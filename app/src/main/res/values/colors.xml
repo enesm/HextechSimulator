@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorGoldYellow">#DDD981</color>
+    <color name="colorGoldBrown">#524418</color>
+    <color name="colorDarkBlue">#091a28</color>
+    <color name="colorLightBlue">#07DAF5</color>
+    <color name="colorDeepDarkBlue">#000814</color>
+    <color name="colorTransBlue">#4D00FFEA</color>
+    <color name="colorGreyBronz">#a09b8c</color>
+    <color name="colorGold">#5c461e</color>
+    <color name="colorFrameBlue">#204148</color>
+    <color name="colorFrameBlueLight">#37707C</color>
+    <color name="colorFrameGoldStart">#b79a5e</color>
+    <color name="colorFrameGoldEnd">#584A2C</color>
+    <color name="colorErrorDarkRed">#240000</color>
+    <color name="colorErrorLightRed">#580606</color>
+    <color name="colorDarkGrey">#383838</color>
+    <color name="colorProgressLevelStart">#004753</color>
+    <color name="colorProgressLevelEnd">#00FFFF</color>
+    <color name="colorLightBrown">#d8cca2</color>
+    <color name="colorEnvanterScroll">#785a28</color>
+    <color name="colorPopupEnvanterItemBackground">#010a13</color>
+    <color name="popupActive">#c8b98d</color>
+    <color name="popupPassive">#63604f</color>
+    <color name="colorPopupEnvanterFrame">#523f19</color>
+    <color name="colorPopupAvailableBlueStart">#063c52</color>
+    <color name="colorPopupAvailableBlueEnd">#042d3e</color>
+</resources>

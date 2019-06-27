@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_envanter_menu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_envanter_background">
+
+    <TextView
+        android:id="@+id/popup_envanter_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:layout_toStartOf="@id/popup_envanter_samp_mevcut_degil"
+        android:layout_toLeftOf="@id/popup_envanter_samp_mevcut_degil"
+        android:fontFamily="@font/chaparralbold"
+        android:text="@string/sys_hatali_veri"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/popup_envanter_samp_mevcut_degil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/popup_available"
+        android:fontFamily="@font/friz"
+        android:padding="10dp"
+        android:text="@string/sys_hatali_veri"
+        android:textColor="@color/colorGreyBronz"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/popup_envanter_item_genel_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popup_envanter_item_name"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/friz"
+        android:text="@string/sys_hatali_veri"
+        android:textColor="@color/colorGreyBronz"
+        android:textSize="12sp" />
+
+    <View
+        android:id="@+id/popup_envanter_sep"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/popup_envanter_item_genel_name"
+        android:background="@color/colorPopupEnvanterFrame" />
+
+    <RelativeLayout
+        android:id="@+id/popup_layer_yeniden_isle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popup_envanter_sep"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/popup_layer_yeniden_isle_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_yeniden_isle" />
+
+        <TextView
+            android:id="@+id/popup_layer_yeniden_isle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/popup_layer_yeniden_isle_icon"
+            android:layout_toRightOf="@id/popup_layer_yeniden_isle_icon"
+            android:fontFamily="@font/chaparralbold"
+            android:text="@string/popup_yeniden_isle"
+            android:textColor="@color/popupActive" />
+
+        <TextView
+            android:id="@+id/popup_layer_yeniden_isle_aciklama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/popup_layer_yeniden_isle_text"
+            android:layout_toRightOf="@id/popup_layer_yeniden_isle_text"
+            android:fontFamily="@font/chaparralregular"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/popup_yeniden_isle_aciklama"
+            android:textColor="@color/popupActive" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/popup_layer_ayristir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popup_layer_yeniden_isle"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/popup_layer_ayristir_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_ayristir" />
+
+        <TextView
+            android:id="@+id/popup_layer_ayristir_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/popup_layer_ayristir_icon"
+            android:layout_toRightOf="@id/popup_layer_ayristir_icon"
+            android:fontFamily="@font/chaparralbold"
+            android:text="@string/popup_ayristir"
+            android:textColor="@color/popupActive" />
+
+        <TextView
+            android:id="@+id/popup_layer_ayristir_aciklama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/popup_layer_ayristir_text"
+            android:layout_toRightOf="@id/popup_layer_ayristir_text"
+            android:fontFamily="@font/chaparralregular"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/popup_ayristir_aciklama"
+            android:textColor="@color/popupActive" />
+
+        <TextView
+            android:id="@+id/popup_envanter_ayristir_oz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/popup_envanter_ayristir_icon"
+            android:layout_toLeftOf="@id/popup_envanter_ayristir_icon"
+            android:layout_toEndOf="@id/popup_layer_ayristir_aciklama"
+            android:layout_toRightOf="@id/popup_layer_ayristir_aciklama"
+            android:fontFamily="@font/friz"
+            android:gravity="end"
+            android:text="9999"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorGreyBronz"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/popup_envanter_ayristir_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/icon_to" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/popup_layer_gelistir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/popup_layer_ayristir"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/popup_layer_gelistir_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_gelistir" />
+
+        <TextView
+            android:id="@+id/popup_layer_gelistir_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/popup_layer_gelistir_icon"
+            android:layout_toRightOf="@id/popup_layer_gelistir_icon"
+            android:fontFamily="@font/chaparralbold"
+            android:text="@string/popup_gelistir"
+            android:textColor="@color/popupActive" />
+
+        <TextView
+            android:id="@+id/popup_layer_gelistir_aciklama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/popup_layer_gelistir_text"
+            android:layout_toRightOf="@id/popup_layer_gelistir_text"
+            android:fontFamily="@font/chaparralregular"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/popup_gelistir_aciklama"
+            android:textColor="@color/popupActive" />
+
+        <TextView
+            android:id="@+id/popup_envanter_gelistir_oz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/popup_envanter_gelistir_icon"
+            android:layout_toLeftOf="@id/popup_envanter_gelistir_icon"
+            android:layout_toEndOf="@id/popup_layer_gelistir_aciklama"
+            android:layout_toRightOf="@id/popup_layer_gelistir_aciklama"
+            android:fontFamily="@font/friz"
+            android:gravity="end"
+            android:text="9999"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/popup_envanter_gelistir_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/icon_to" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkBlue"
+    android:keepScreenOn="true"
+    tools:context=".ActivityMain">
+
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/anim_wave"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="1"
+        android:scaleY="-1"
+        app:mwhCloseColor="@android:color/black"
+        app:mwhColorAlpha="0.1"
+        app:mwhGradientAngle="-90"
+        app:mwhIsRunning="true"
+        app:mwhProgress="1"
+        app:mwhStartColor="@color/colorLightBlue"
+        app:mwhVelocity="1"
+        app:mwhWaveHeight="150dp"
+        app:mwhWaves="
+            70,340,1.4,1,10
+            50,210,1.2,0.9,15
+            500,50,1.5,2,-20" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:id="@+id/frame_envanter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:id="@+id/frame_shards"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:orientation="vertical"
+                android:paddingTop="5dp">
+
+                <com.enes.hextechsimulator.AutofitRecyclerView
+                    android:id="@+id/grid_envanter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:columnWidth="64dp"
+                    android:fadeScrollbars="false"
+                    android:overScrollMode="never"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:scrollbarFadeDuration="0"
+                    android:scrollbarSize="3dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbarThumbVertical="@color/colorEnvanterScroll"
+                    android:scrollbars="vertical"
+                    android:visibility="gone">
+
+                </com.enes.hextechsimulator.AutofitRecyclerView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorGold" />
+
+            <LinearLayout
+                android:id="@+id/frame_varliklar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_mo" />
+
+                    <TextView
+                        android:id="@+id/text_mo"
+                        style="@style/styleTextVarliklar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="0"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_to" />
+
+                    <TextView
+                        android:id="@+id/text_to"
+                        style="@style/styleTextVarliklar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="0"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_gem" />
+
+                    <TextView
+                        android:id="@+id/text_gem"
+                        style="@style/styleTextVarliklar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="0"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_anahtar" />
+
+                    <TextView
+                        android:id="@+id/text_anahtar"
+                        style="@style/styleTextVarliklar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="0"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_sandik" />
+
+                    <TextView
+                        android:id="@+id/text_sandik"
+                        style="@style/styleTextVarliklar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="0"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frame_show"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:id="@+id/frame_top"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/frame_level"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ProgressBar
+                            style="?android:progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:padding="7dp"
+                            android:progress="100"
+                            android:progressDrawable="@drawable/progress_level_frame"
+                            android:rotation="270" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_exp"
+                            style="?android:progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:indeterminate="false"
+                            android:max="200"
+                            android:padding="7dp"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_level"
+                            android:rotation="270" />
+
+                        <TextView
+                            android:id="@+id/text_level"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autoSizeMaxTextSize="14sp"
+                            android:fontFamily="@font/friz"
+                            android:gravity="center"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="1"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorFrameGoldStart"
+                            android:textSize="13sp" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/frame_sandik"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/debug_sandik_ekle"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:text="Sandık Ekle"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/debug_anahtar_ekle"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:text="Anahtar Ekle"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/debug_samp_ekle"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:text="Şampiyon Kristali Ekle"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/debug_kostum_ekle"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:text="Kostüm Kristali Ekle"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/debug_exp_ekle"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:text="EXP Ekle"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/debug_cevher_ekle"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:text="Cevher Ekle"
+                    android:visibility="gone" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
