@@ -3,29 +3,20 @@ package com.enes.hextechsimulator.Database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "AktifYama")
 public class AktifYama {
-    @ColumnInfo(name = "ID")
-    @PrimaryKey(autoGenerate = true)
-    private int ID;
-
+    @PrimaryKey
     @ColumnInfo(name = "yama")
+    @NonNull
     private String yama;
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public void setYama(String yama) {
+    void setYama(String yama) {
         this.yama = yama;
     }
 
-    public String getYama() {
+    String getYama() {
         return yama;
     }
 }

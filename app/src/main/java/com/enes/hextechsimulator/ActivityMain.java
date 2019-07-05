@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.enes.hextechsimulator.Database.Db;
 import com.enes.hextechsimulator.Database.GrupTypes;
 import com.enes.hextechsimulator.Database.DatabaseManager;
+import com.enes.hextechsimulator.Models.ModelDialog;
 import com.enes.hextechsimulator.Models.ModelEnvanter;
 import com.enes.hextechsimulator.Models.ModelSandik;
 import com.enes.hextechsimulator.Models.ModelSpec;
@@ -574,7 +575,7 @@ public class ActivityMain extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        final DialogManagerYesNo dialogAsk = new DialogManagerYesNo(activity, activity.getResources().getString(R.string.sys_exit_prompt));
+        /*final DialogManagerYesNo dialogAsk = new DialogManagerYesNo(activity, activity.getResources().getString(R.string.sys_exit_prompt));
         dialogAsk.show();
         Button pos = dialogAsk.findViewById(R.id.dialog_buton_yes);
         Button neg = dialogAsk.findViewById(R.id.dialog_buton_no);
@@ -589,6 +590,25 @@ public class ActivityMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialogAsk.dismiss();
+            }
+        });*/
+
+        final ManagerDialog dialog = new ManagerDialog(activity, new ModelDialog(activity.getResources().getString(R.string.sys_exit_prompt),
+                activity.getResources().getString(R.string.sys_evet), activity.getResources().getString(R.string.sys_hayir)));
+        dialog.show();
+        Button pos = dialog.findViewById(R.id.dialog_buton_pos);
+        Button neg = dialog.findViewById(R.id.dialog_buton_neg);
+        pos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                ActivityMain.super.onBackPressed();
+            }
+        });
+        neg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
             }
         });
     }
