@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.enes.hextechsimulator.ActivityMain;
 import com.enes.hextechsimulator.Models.ModelChamp;
+import com.enes.hextechsimulator.Models.ModelNadirlik;
 import com.enes.hextechsimulator.Models.ModelPlayer;
 import com.enes.hextechsimulator.Models.ModelSandik;
 import com.enes.hextechsimulator.Models.ModelSkin;
@@ -80,6 +79,8 @@ public class DatabaseManager {
         populateSandik();
         if (DEBUG) Log.e("Veritabanı", "Spesyaller yükleniyor...");
         populateSpecial();
+        if (DEBUG) Log.e("Veritabanı", "Nadirlikler yükleniyor...");
+        populateNadirlik();
     }
 
     private static void clearAll() {
@@ -87,6 +88,7 @@ public class DatabaseManager {
         db.daoSkin().clear();
         db.daoSandik().clear();
         db.daoYama().clear();
+        db.daoNadirlik().clear();
         SQLiteDatabase seq = new SequenceHelper().getDb();
         try {
             seq.execSQL("DELETE FROM 'sqlite_sequence' WHERE name = 'Sampiyonlar'");
@@ -97,6 +99,16 @@ public class DatabaseManager {
         } catch (Exception e) {
             if (DEBUG) Log.e("SeqHelper", "Tablo bulunamadı.");
         }
+    }
+
+    private static void populateNadirlik() {
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(1, R.string.nadirlik_1, 90, 150));
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(2, R.string.nadirlik_2, 270, 195));
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(3, R.string.nadirlik_3, 630, 270));
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(4, R.string.nadirlik_4, 960, 364));
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(5, R.string.nadirlik_5, 1260, 555));
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(6, R.string.nadirlik_6, 1560, 650));
+        db.daoNadirlik().addNadirlik(new ModelNadirlik(7, R.string.nadirlik_7, 1700, 900));
     }
 
     private static void populateSpecial() {

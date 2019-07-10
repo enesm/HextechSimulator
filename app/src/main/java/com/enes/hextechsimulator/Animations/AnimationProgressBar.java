@@ -1,4 +1,4 @@
-package com.enes.hextechsimulator;
+package com.enes.hextechsimulator.Animations;
 
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -10,7 +10,7 @@ public class AnimationProgressBar extends Animation {
     private float from;
     private float  to;
 
-    AnimationProgressBar(ProgressBar progressBar, float from, float to) {
+    public AnimationProgressBar(ProgressBar progressBar, float from, float to) {
         super();
         this.progressBar = progressBar;
         this.from = from;

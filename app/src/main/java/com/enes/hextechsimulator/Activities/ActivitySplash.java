@@ -1,4 +1,4 @@
-package com.enes.hextechsimulator;
+package com.enes.hextechsimulator.Activities;
 
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -8,6 +8,8 @@ import android.telecom.Call;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
+
+import com.enes.hextechsimulator.R;
 
 
 public class ActivitySplash extends AppCompatActivity {

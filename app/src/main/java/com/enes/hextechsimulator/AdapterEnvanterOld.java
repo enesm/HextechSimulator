@@ -11,18 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHolder> {
+public class AdapterEnvanterOld {
 
-    private ArrayList<Item> envanter;
+    /*private ArrayList<Item> envanter;
     private Context context;
     private CustomItemClickListener listener;
     private ManagerSampiyon sm;
     private ManagerKostum km;
-    private ManagerSandik cm;
+    private ManagerSandik cm;*/
 
-    AdapterEnvanter(Activity activity, CustomItemClickListener listener) {
+    AdapterEnvanterOld(Activity activity, CustomItemClickListener listener) {
+        /*
         this.listener = listener;
         context = activity;
         //db = database;
@@ -30,11 +30,11 @@ public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHo
         km = new ManagerKostum();
         cm = new ManagerSandik();
         envanter = new ArrayList<>();
-        envanterDuzenle();
+        envanterDuzenle();*/
     }
 
     public interface CustomItemClickListener {
-        void onItemClick(View v, Item item, int position);
+        //void onItemClick(View v, Item item, int position);
     }
 
     void envanterDuzenle() {
@@ -70,10 +70,10 @@ public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHo
             db.setEnvanterUpdate(false);
         }*/
     }
-
+    /*
     @NonNull
     @Override
-    public AdapterEnvanter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterEnvanterOld.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final ViewHolder view_holder;
         if (viewType == 11) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_separator, parent, false);
@@ -92,8 +92,8 @@ public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHo
 
         return view_holder;
     }
-
-    @Override
+*/
+    /*@Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // TODO: Item öğeleri düzgün görüntülenmiyor
         // TODO: Öğeler düzgün update almıyor
@@ -154,11 +154,11 @@ public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHo
             } else {
                 holder.txtMiktar.setVisibility(View.INVISIBLE);
             }
-        }*/
+        }
     }
 
-    boolean isHeader(int position) {
-        int tip = envanter.get(position).getItemTip();
+    /*boolean isHeader(int position) {
+        //int tip = envanter.get(position).getItemTip();
         return tip == 11;
     }
 
@@ -175,7 +175,7 @@ public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHo
     @Override
     public int getItemCount() {
         return envanter.size();
-    }
+    }*/
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
@@ -186,11 +186,11 @@ public class AdapterEnvanter extends RecyclerView.Adapter<AdapterEnvanter.ViewHo
 
         ViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.adapter_grid_img);
-            imgNadirlik = (ImageView) itemView.findViewById(R.id.adapter_badge);
-            imgLegacy = (ImageView) itemView.findViewById(R.id.adapter_legacy);
-            txtSeparator = (TextView) itemView.findViewById(R.id.adapter_separator_text);
-            txtMiktar = (TextView) itemView.findViewById(R.id.adapter_grid_count);
+            img = itemView.findViewById(R.id.adapter_grid_img);
+            imgNadirlik = itemView.findViewById(R.id.adapter_badge);
+            imgLegacy = itemView.findViewById(R.id.adapter_legacy);
+            txtSeparator = itemView.findViewById(R.id.adapter_separator_text);
+            txtMiktar = itemView.findViewById(R.id.adapter_grid_count);
         }
     }
 

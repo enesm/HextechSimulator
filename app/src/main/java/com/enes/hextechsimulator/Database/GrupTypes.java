@@ -10,5 +10,5 @@ public class GrupTypes {
 
     public static final int ITEM_CEVHER = 1;
 
-    static final int DATABASE_VERSION = 7; // Her veritabani yapisi degistirildiginde artir!
+    static final int DATABASE_VERSION = 1; // Her veritabani yapisi degistirildiginde artir!
 }

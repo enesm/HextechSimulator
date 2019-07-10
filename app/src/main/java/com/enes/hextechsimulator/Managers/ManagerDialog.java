@@ -1,4 +1,4 @@
-package com.enes.hextechsimulator;
+package com.enes.hextechsimulator.Managers;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,12 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.enes.hextechsimulator.Models.ModelDialog;
+import com.enes.hextechsimulator.R;
+import com.enes.hextechsimulator.RootApp;
 
 public class ManagerDialog extends Dialog implements android.view.View.OnClickListener {
 
     private ModelDialog mDialog;
 
-    ManagerDialog(@NonNull Activity activity, ModelDialog mDialog) {
+    public ManagerDialog(@NonNull Activity activity, ModelDialog mDialog) {
         super(activity);
         this.mDialog = mDialog;
     }

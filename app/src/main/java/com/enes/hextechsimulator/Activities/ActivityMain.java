@@ -1,11 +1,12 @@
-package com.enes.hextechsimulator;
+package com.enes.hextechsimulator.Activities;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -15,22 +16,19 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.enes.hextechsimulator.Animations.AnimationProgressBar;
 import com.enes.hextechsimulator.Database.Db;
 import com.enes.hextechsimulator.Database.GrupTypes;
 import com.enes.hextechsimulator.Database.DatabaseManager;
+import com.enes.hextechsimulator.Managers.ManagerDialog;
 import com.enes.hextechsimulator.Models.ModelDialog;
 import com.enes.hextechsimulator.Models.ModelEnvanter;
-import com.enes.hextechsimulator.Models.ModelSandik;
-import com.enes.hextechsimulator.Models.ModelSpec;
-
-import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import com.enes.hextechsimulator.R;
+import com.enes.hextechsimulator.RootApp;
 
 public class ActivityMain extends AppCompatActivity {
     private static final boolean DEBUG = true;
-    private static final int UI_TEXT_CHANGE_TIME = 1750; /* UI sayı arttırma animasyon süresi */
+    private static final int UI_TEXT_CHANGE_TIME = 2750; /* UI sayı arttırma animasyon süresi */
     Activity activity;
     PopupWindow changeStatusPopUp;
     Db db;
@@ -42,6 +40,9 @@ public class ActivityMain extends AppCompatActivity {
     private TextView textChest;
     private TextView textLevel;
     private ProgressBar progressExp;
+    private Button butonStore;
+    private Button butonDebug;
+    private Button butonAyarlar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +70,72 @@ public class ActivityMain extends AppCompatActivity {
         textChest = findViewById(R.id.text_sandik);
         textLevel = findViewById(R.id.text_level);
         progressExp = findViewById(R.id.progress_exp);
+        butonStore = findViewById(R.id.main_buton_store);
+        butonDebug = findViewById(R.id.main_buton_debug_menu);
+        butonAyarlar = findViewById(R.id.main_buton_settings);
 
         changeStatusPopUp = new PopupWindow(activity);
+
+        butonAyarlar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityMain.this, ActivitySettings.class));
+            }
+        });
+        butonStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityMain.this, ActivityStore.class));
+            }
+        });
+        butonDebug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ActivityMain.this);
+                builder.setTitle("Debug Menu");
+                String[] options = {"Sampiyon Ekle", "Kostum Ekle", "Mavi Oz Ekle", "Turuncu Oz Ekle", "Cevher Ekle", "Level Ekle", "Exp Ekle", "Sandik Ekle", "Anahtar Ekle"};
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                //
+                            case 1:
+                                //
+                            case 2:
+                                addBe(83);
+                                break;
+                            case 3:
+                                addOe(39);
+                                break;
+                            case 4:
+                                addGem(1);
+                                break;
+                            case 5:
+                                addLevel();
+                                break;
+                            case 6:
+                                addExp(132);
+                                break;
+                            case 7:
+                                addChest(1);
+                                break;
+                            case 8:
+                                addKey(1);
+                                break;
+                        }
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
         //final RecyclerView recyclerView = findViewById(R.id.grid_envanter);
         //recyclerView.setHasFixedSize(true);
 
         //View header = LayoutInflater.from(this).inflate(R.layout.adapter_separator, recyclerView, false);
-        /*final AdapterEnvanter adapter = new AdapterEnvanter(activity, databaseOld, new AdapterEnvanter.CustomItemClickListener() {
+        /*final AdapterEnvanterOld adapter = new AdapterEnvanterOld(activity, databaseOld, new AdapterEnvanterOld.CustomItemClickListener() {
             @Override
             public void onItemClick(View v, Item item, int position) {
                 if (!changeStatusPopUp.isShowing()) {
@@ -138,66 +197,6 @@ public class ActivityMain extends AppCompatActivity {
             }
         };
         timerEnvanterUpdate.scheduleAtFixedRate(envanterTask, 0, 1000);*/
-
-        if (DEBUG) {
-            //final Random r = new Random();
-            final Button debugSamp = findViewById(R.id.debug_samp_ekle);
-            debugSamp.setVisibility(View.VISIBLE);
-            debugSamp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //adapter.envanterDuzenle();
-                    //adapter.notifyDataSetChanged();
-                    addBe(40);
-                }
-            });
-            final Button debugKostum = findViewById(R.id.debug_kostum_ekle);
-            debugKostum.setVisibility(View.VISIBLE);
-            debugKostum.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //adapter.envanterDuzenle();
-                    //adapter.notifyDataSetChanged();
-                    addOe(25);
-                }
-            });
-            final Button debugSandik = findViewById(R.id.debug_sandik_ekle);
-            debugSandik.setVisibility(View.VISIBLE);
-            debugSandik.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addChest(1);
-                    //adapter.envanterDuzenle();
-                    //adapter.notifyDataSetChanged();
-                }
-            });
-            final Button debugKey = findViewById(R.id.debug_anahtar_ekle);
-            debugKey.setVisibility(View.VISIBLE);
-            debugKey.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addKey(1);
-                }
-            });
-            final Button debugExp = findViewById(R.id.debug_exp_ekle);
-            debugExp.setVisibility(View.VISIBLE);
-            debugExp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addExp(115);
-                }
-            });
-            final Button debugCevher = findViewById(R.id.debug_cevher_ekle);
-            debugCevher.setVisibility(View.VISIBLE);
-            debugCevher.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addGem(1);
-                    //adapter.envanterDuzenle();
-                    //adapter.notifyDataSetChanged();
-                }
-            });
-        }
     }
 
     @Override
@@ -428,8 +427,8 @@ public class ActivityMain extends AppCompatActivity {
             @Override
             public void run() {
                 if (DEBUG)
-                    Log.e("Current Exp", String.valueOf(db.daoPlayer().getPlayer().getExp()) + " Next Exp: " +
-                            String.valueOf(db.daoPlayer().getNextExp()));
+                    Log.e("Current Exp", db.daoPlayer().getPlayer().getExp() + " Next Exp: " +
+                            db.daoPlayer().getNextExp());
                 progressExp.setMax(db.daoPlayer().getNextExp());
                 AnimationProgressBar anim = new AnimationProgressBar(progressExp, progressExp.getProgress(),
                         db.daoPlayer().getExp());
@@ -492,8 +491,8 @@ public class ActivityMain extends AppCompatActivity {
                     if (curLevel != curLevelText) {
                         final AlphaAnimation animFadeIn = new AlphaAnimation(0.0f, 1.0f);
                         AlphaAnimation animFadeOut = new AlphaAnimation(1.0f, 0.0f);
-                        animFadeIn.setDuration(100);
-                        animFadeOut.setDuration(500);
+                        animFadeIn.setDuration(50);
+                        animFadeOut.setDuration(250);
                         textLevel.startAnimation(animFadeOut);
                         animFadeOut.setAnimationListener(new Animation.AnimationListener() {
                             @Override
@@ -619,6 +618,7 @@ public class ActivityMain extends AppCompatActivity {
             changeStatusPopUp.dismiss();
             if (DEBUG) Log.e("onDestroy", "popup leak protected.");
         }
+        db.close();
         super.onDestroy();
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.enes.hextechsimulator">
 
     <application
@@ -7,21 +8,28 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activities.ActivityStore"
+            android:screenOrientation="sensorLandscape"/>
         <activity
-            android:name=".ActivityMain"
+            android:name=".Activities.ActivitySettings"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activities.ActivityMain"
             android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivitySplash"
-            android:screenOrientation="sensorLandscape">
-        </activity>
+            android:name=".Activities.ActivitySplash"
+            android:screenOrientation="sensorLandscape" />
     </application>
 
 </manifest>

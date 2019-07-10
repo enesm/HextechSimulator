@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorDarkBlue"
     android:keepScreenOn="true"
-    tools:context=".ActivityMain">
+    tools:context=".Activities.ActivityMain">
 
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/anim_wave"
@@ -288,59 +288,50 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/frame_sandik"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="10">
 
-                <Button
-                    android:id="@+id/debug_sandik_ekle"
-                    android:layout_width="200dp"
-                    android:layout_height="35dp"
-                    android:text="Sandık Ekle"
-                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/frame_sandik"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/debug_anahtar_ekle"
-                    android:layout_width="200dp"
-                    android:layout_height="35dp"
-                    android:text="Anahtar Ekle"
-                    android:visibility="gone" />
+                </LinearLayout>
 
-                <Button
-                    android:id="@+id/debug_samp_ekle"
-                    android:layout_width="200dp"
-                    android:layout_height="35dp"
-                    android:text="Şampiyon Kristali Ekle"
-                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/frame_butonlar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="-10dp"
+                    android:paddingRight="-10dp">
 
-                <Button
-                    android:id="@+id/debug_kostum_ekle"
-                    android:layout_width="200dp"
-                    android:layout_height="35dp"
-                    android:text="Kostüm Kristali Ekle"
-                    android:visibility="gone" />
+                    <Button
+                        android:id="@+id/main_buton_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                <Button
-                    android:id="@+id/debug_exp_ekle"
-                    android:layout_width="200dp"
-                    android:layout_height="35dp"
-                    android:text="EXP Ekle"
-                    android:visibility="gone" />
+                    <Button
+                        android:id="@+id/main_buton_settings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
 
-                <Button
-                    android:id="@+id/debug_cevher_ekle"
-                    android:layout_width="200dp"
-                    android:layout_height="35dp"
-                    android:text="Cevher Ekle"
-                    android:visibility="gone" />
+                    <Button
+                        android:id="@+id/main_buton_debug_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                </FrameLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
