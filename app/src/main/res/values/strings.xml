@@ -961,4 +961,5 @@
     <string name="item_materyal">Materyal</string>
     <string name="item_shard">Kristal</string>
     <string name="item_special">Özel Eşya</string>
+    <string name="sys_text_settings">Ayarlar</string>
 </resources>

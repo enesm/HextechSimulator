@@ -960,4 +960,5 @@
     <string name="item_materyal">Material</string>
     <string name="item_shard">Shard</string>
     <string name="item_special">Special Item</string>
+    <string name="sys_text_settings">Settings</string>
 </resources>
