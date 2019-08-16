@@ -2,9 +2,8 @@ package com.enes.hextechsimulator.Activities;
 
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;

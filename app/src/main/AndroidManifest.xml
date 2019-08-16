@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.ActivityStore"
-            android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name=".Activities.ActivityAbout"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".Activities.ActivityStore"
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".Activities.ActivitySettings"
             android:screenOrientation="sensorLandscape" />

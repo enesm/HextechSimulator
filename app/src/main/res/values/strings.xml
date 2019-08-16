@@ -962,4 +962,5 @@
     <string name="item_shard">Kristal</string>
     <string name="item_special">Özel Eşya</string>
     <string name="sys_text_settings">Ayarlar</string>
+    <string name="sys_settings_about">Hakkında</string>
 </resources>

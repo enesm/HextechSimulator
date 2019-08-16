@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,13 +24,15 @@ import com.enes.hextechsimulator.Managers.ManagerDialog;
 import com.enes.hextechsimulator.Models.ModelDialog;
 import com.enes.hextechsimulator.Models.ModelEnvanter;
 import com.enes.hextechsimulator.R;
-import com.enes.hextechsimulator.RootApp;
+import com.scwang.wave.MultiWaveHeader;
+
+import static java.lang.Math.abs;
 
 public class ActivityMain extends AppCompatActivity {
     private static final boolean DEBUG = true;
     private static final int UI_TEXT_CHANGE_TIME = 2750; /* UI sayı arttırma animasyon süresi */
     Activity activity;
-    PopupWindow changeStatusPopUp;
+    PopupWindow popupItemClick;
     Db db;
 
     private TextView textBe;
@@ -43,6 +45,7 @@ public class ActivityMain extends AppCompatActivity {
     private Button butonStore;
     private Button butonDebug;
     private Button butonAyarlar;
+    private MultiWaveHeader bgWave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +76,9 @@ public class ActivityMain extends AppCompatActivity {
         butonStore = findViewById(R.id.main_buton_store);
         butonDebug = findViewById(R.id.main_buton_debug_menu);
         butonAyarlar = findViewById(R.id.main_buton_settings);
+        bgWave = findViewById(R.id.anim_wave);
 
-        changeStatusPopUp = new PopupWindow(activity);
+        popupItemClick = new PopupWindow(activity);
 
         butonAyarlar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +119,7 @@ public class ActivityMain extends AppCompatActivity {
                                 addLevel();
                                 break;
                             case 6:
-                                addExp(132);
+                                addExp(1809);
                                 break;
                             case 7:
                                 addChest(1);
@@ -138,7 +142,7 @@ public class ActivityMain extends AppCompatActivity {
         /*final AdapterEnvanterOld adapter = new AdapterEnvanterOld(activity, databaseOld, new AdapterEnvanterOld.CustomItemClickListener() {
             @Override
             public void onItemClick(View v, Item item, int position) {
-                if (!changeStatusPopUp.isShowing()) {
+                if (!popupItemClick.isShowing()) {
                     if (DEBUG)
                         Log.e("İsim:", item.getIsim() + " ID:" + String.valueOf(item.getId()) + " itemTip:" + String.valueOf(item.getItemTip()));
                     int[] location = new int[2];
@@ -214,15 +218,15 @@ public class ActivityMain extends AppCompatActivity {
         if (layoutInflater != null) {
             View layoutEnvanterPopup = layoutInflater.inflate(R.layout.popup_envanter_item, viewGroup);
 
-            changeStatusPopUp.setContentView(layoutEnvanterPopup);
-            changeStatusPopUp.setFocusable(true);
+            popupItemClick.setContentView(layoutEnvanterPopup);
+            popupItemClick.setFocusable(true);
 
             if (DEBUG) Log.e("X", String.valueOf(p.x) + " Y:" + String.valueOf(p.y));
             int OFFSET_X = view.getMeasuredWidth();
             int OFFSET_Y = -view.getMeasuredHeight();
 
-            changeStatusPopUp.showAtLocation(layoutEnvanterPopup, Gravity.START, p.x + OFFSET_X, p.y + OFFSET_Y);
-            //changeStatusPopUp.showAsDropDown(layout, p.x + OFFSET_X, p.y + OFFSET_Y, Gravity.CENTER);
+            popupItemClick.showAtLocation(layoutEnvanterPopup, Gravity.START, p.x + OFFSET_X, p.y + OFFSET_Y);
+            //popupItemClick.showAsDropDown(layout, p.x + OFFSET_X, p.y + OFFSET_Y, Gravity.CENTER);
 
             TextView textItemName = layoutEnvanterPopup.findViewById(R.id.popup_envanter_item_name);
             TextView textGenelName = layoutEnvanterPopup.findViewById(R.id.popup_envanter_item_genel_name);
@@ -286,7 +290,7 @@ public class ActivityMain extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (DEBUG) Log.e("Yeniden İşle", "basıldı.");
-                    changeStatusPopUp.dismiss();
+                    popupItemClick.dismiss();
                 }
             });
 
@@ -294,7 +298,7 @@ public class ActivityMain extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (DEBUG) Log.e("Ayrıştır", "basıldı.");
-                    changeStatusPopUp.dismiss();
+                    popupItemClick.dismiss();
                 }
             });
 
@@ -302,11 +306,11 @@ public class ActivityMain extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (DEBUG) Log.e("Geliştir", "basıldı.");
-                    changeStatusPopUp.dismiss();
+                    popupItemClick.dismiss();
                 }
             });
 
-            changeStatusPopUp.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            popupItemClick.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public void onDismiss() {
                     // Dismiss listener
@@ -423,16 +427,24 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     private void updateProgressExp() {
+        final int nextExp = db.daoPlayer().getNextExp();
+        final int exp = db.daoPlayer().getExp();
+        final int oldExp = progressExp.getProgress();
+        int mesafe = exp - oldExp; // TODO: Biraz daha kontrole ihtiyac var.
+        final long animTime = (long) (mesafe / 0.4);
+        if (DEBUG)
+            Log.e("Current Exp", exp + " Next Exp: " + nextExp + " Mesafe: " + mesafe + " AnimTime: " + animTime);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (DEBUG)
-                    Log.e("Current Exp", db.daoPlayer().getPlayer().getExp() + " Next Exp: " +
-                            db.daoPlayer().getNextExp());
-                progressExp.setMax(db.daoPlayer().getNextExp());
-                AnimationProgressBar anim = new AnimationProgressBar(progressExp, progressExp.getProgress(),
-                        db.daoPlayer().getExp());
-                anim.setDuration(900);
+                progressExp.setMax(nextExp);
+                AnimationProgressBar anim;
+                if (exp >= nextExp) {
+                    anim = new AnimationProgressBar(progressExp, oldExp, nextExp);
+                } else {
+                    anim = new AnimationProgressBar(progressExp, oldExp, exp);
+                }
+                anim.setDuration(animTime);
                 progressExp.startAnimation(anim);
                 anim.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -442,6 +454,7 @@ public class ActivityMain extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
+                        if (DEBUG) Log.e("Exp anim", "end.");
                         checkLevelUp();
                     }
 
@@ -464,7 +477,7 @@ public class ActivityMain extends AppCompatActivity {
                     addLevel();
                     progressExp.setProgress(0);
                     db.daoPlayer().setExp(curExp - nexExp);
-                    db.daoPlayer().setNextExp(db.daoPlayer().getNextExp() + 200);
+                    db.daoPlayer().setNextExp(db.daoPlayer().getNextExp() + 300);
                     updateProgressExp();
                 }
             }
@@ -552,13 +565,22 @@ public class ActivityMain extends AppCompatActivity {
         }).start();
     }
 
+    public void enableDebugMenu() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                butonDebug.setVisibility(View.VISIBLE);
+            }
+        }).start();
+    }
+
     private void changeValueWithAnimation(final TextView text, final int value) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 int curVal = Integer.valueOf(text.getText().toString());
                 final ValueAnimator anim = ValueAnimator.ofInt(curVal, value);
-                if (Math.abs(curVal - value) > 1) {
+                if (abs(curVal - value) > 1) {
                     anim.setDuration(UI_TEXT_CHANGE_TIME);
                 } else anim.setDuration(20);
                 anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -574,24 +596,6 @@ public class ActivityMain extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        /*final DialogManagerYesNo dialogAsk = new DialogManagerYesNo(activity, activity.getResources().getString(R.string.sys_exit_prompt));
-        dialogAsk.show();
-        Button pos = dialogAsk.findViewById(R.id.dialog_buton_yes);
-        Button neg = dialogAsk.findViewById(R.id.dialog_buton_no);
-        pos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogAsk.dismiss();
-                ActivityMain.super.onBackPressed();
-            }
-        });
-        neg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogAsk.dismiss();
-            }
-        });*/
-
         final ManagerDialog dialog = new ManagerDialog(activity, new ModelDialog(activity.getResources().getString(R.string.sys_exit_prompt),
                 activity.getResources().getString(R.string.sys_evet), activity.getResources().getString(R.string.sys_hayir)));
         dialog.show();
@@ -613,11 +617,21 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        bgWave.stop();
+        if (popupItemClick.isShowing()) popupItemClick.dismiss();
+        super.onPause();
+    }
+
+    @Override
+    protected void onPostResume() {
+        bgWave.start();
+        super.onPostResume();
+    }
+
+    @Override
     public void onDestroy() {
-        if (changeStatusPopUp.isShowing()) {
-            changeStatusPopUp.dismiss();
-            if (DEBUG) Log.e("onDestroy", "popup leak protected.");
-        }
+        if (popupItemClick.isShowing()) popupItemClick.dismiss();
         db.close();
         super.onDestroy();
     }
